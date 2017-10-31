@@ -1,27 +1,30 @@
-# Amazon cellphones evaluation platform 
+# Amazon cell phones evaluation platform 
 
 # Abstract
-When you want to buy a new phone on Amazon, you start to read all the reviews, and you might be a bit confused at the end. You don't have a nice idea on which caracteristics are nice, and which are bad.
-We dedide to make a platform evaluation based on Amazon reviews to extract the most revelant topics (things people talk in the reviews like battery, ergonomy, ...) from the reviews and perform a sentiment analysis on the words to grade them, in order to clear your head and to feel better when you shop online.
+
+Buying products from Amazon can be risky. Reviews help when making decision which product to buy, as they give users more product details and personal experience. Since everybody who wants to buy a product from Amazon usually spends some time reading the reviews and ratings, we decided to create evaluation platform which would help the users decide by giving them insight into model's downsides and advantages based on the reviews.
+
+This platform will use reviews and extract meaningful information from it, and then evaluate certain product based on these reviews. We will use sentiment analysis to classify each of the reviews (and it's parts) as good or bad. Based on this we will describe each model. Some of the specifications that will be taken into account are the ergonomy, battery, memory, etc. If we have enough time, we will try to see how the reviews changed during the time for each model, or in other words to see if some models improved during the time. 
+
 
 # Research questions
-What is mentioned in reviews for each models ? (caracteristics)
-Which are the downsides of specific models based on the reviews ?
-Price compared to "cacultated quality" (create groups?)
-Time of the reviews is also important. If there is time left, we could discuss if some models tend to improve ?
-Which machine learning techniques we will use for this project ?
+ - Which specifications are mentioned as relevant in the reviews for each of the model? 
+ - What are downsides and advantages for specific model based on review descriptions? 
+ - Divide cellphones into groups based on money ranges. Which model is the best choice for each of the groups? 
+ - Is the exact date and time of the review important? Do some models show signs of improvement during time?
+
 
 # Dataset
-Amazon dataset (cell phones)
-Additional web scraping from Amazon if required
+Amazon dataset (Cell Phones and Accessories). This dataset contains from k-core .json file (data have been reduced to extract the k-core, such that each of the users and items have k reviews each) and from .csv file that presents only ratings. These dataset includes no metadata or reviews, but only (user,item,rating,timestamp) tuples. 
+
+Additional web scraping from Amazon (if at some point decided it is necessary)
 
 # A list of internal milestones up until project milestone 2
-- Have a project notebook with descriptive analysis
-- Understand the data
-- Preprocess reviews with sentiment analysis
-- Try ML algorithms
-- Think about the final result (how to show our results, data story ?)
+ - Understand the data into more details
+ - Preprocess reviews using sentiment analysis
+ - Present the exploratory data analysis in one notebook 
+ - Try different machine learning techniques and approaches
+ - Think about presenting the final result. How to present the data story, what interesting patterns we found, relations etc.
 
 # Questions for TAa
-Which machine learning techniques we will use for this project ?
-Which libraries are we allowed to use ?
+Which libraries and machine learning techniques are we allowed to use?
