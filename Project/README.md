@@ -1,4 +1,4 @@
-# Title
+# Amazon cellphones evaluation platform 
 
 # Abstract
 When you want to buy a new phone on Amazon, you start to read all the reviews, and you might be a bit confused at the end. You don't have a nice idea on which caracteristics are nice, and which are bad.
