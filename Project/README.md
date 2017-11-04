@@ -8,10 +8,9 @@ This platform will use reviews and extract meaningful information from it, and t
 
 
 # Research questions
-    - Which specifications are mentioned as relevant in the reviews for each of the model?
-    - What are downsides and advantages for specific model based on review descriptions?
-    - Divide cellphones into groups based on money ranges. Which model is the best choice for each of the groups?
-    - Is the exact date and time of the review important? Do some models show signs of improvement during time?
+ - Which specifications are mentioned as relevant in the reviews for each of the model?
+ - What are downsides and advantages for specific model based on review descriptions?
+ - Divide cellphones into groups based on money ranges. Which model is the best choice for each of the groups?Is the exact date and time of the review important? Do some models show signs of improvement during time?
 
 # Dataset
 Amazon dataset (Cell Phones and Accessories). This dataset contains from k-core .json file (data have been reduced to extract the k-core, such that each of the users and items have k reviews each) and from .csv file that presents only ratings. These dataset includes no metadata or reviews, but only (user,item,rating,timestamp) tuples. 
@@ -19,11 +18,11 @@ Amazon dataset (Cell Phones and Accessories). This dataset contains from k-core 
 Additional web scraping from Amazon (if at some point decided it is necessary)
 
 # A list of internal milestones up until project milestone 2
-    - Understand the data into more details
-    - Preprocess reviews using sentiment analysis
-    - Present the exploratory data analysis in one notebook
-    - Try different machine learning techniques and approaches
-    - Think about presenting the final result. How to present the data story, what interesting patterns we found, relations etc.
+ - Understand the data into more details
+ - Preprocess reviews using sentiment analysis
+ - Present the exploratory data analysis in one notebook
+ - Try different machine learning techniques and approaches
+ - Think about presenting the final result. How to present the data story, what interesting patterns we found, relations etc.
 
 # Questions for TAa
 Which libraries and machine learning techniques are we allowed to use?
