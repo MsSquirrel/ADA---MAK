@@ -44,14 +44,14 @@ Kristina Satara \\
 \begin{document}
 \maketitle
 \begin{abstract}
-Reviews help when making decision on which product to buy, as they give possible customers personal experiences and more product details. Since customers usually invest some time to study the reviews and ratings before buying specific products from Amazon, we decided to create evaluation platform which would help the users to choose their future product. For that, we are giving insight into  downsides and advantages of various brands based on the reviews. The aim of this project is to analyze reviews of different brands of Amazon cell phone products, and to decide with the help of the reviewms to decide which features are important for specific brands of cell phones. For this we use natural language processing techniques, such as tf-idf matrix, ...  and Latent Dirichlet Allocation.
+\textbf {Reviews help when making decision on which product to buy, as they give possible customers personal experiences and more product details. Since customers usually invest some time to study the reviews and ratings before buying specific products from Amazon, we decided to create evaluation platform which would help the users to choose their future product. For that, we are giving insight into  downsides and advantages of various brands based on the reviews. The aim of this project is to analyze reviews of different brands of Amazon cell phone products, and to decide with the help of the reviewms to decide which features are important for specific brands of cell phones. For this we use natural language processing techniques, such as tf-idf matrix and Latent Dirichlet Allocation.}
 \end{abstract}
 
 
 \section{Introduction}
 Sentiment analysis, also known as opinion mining or emotion AI, is important part of natural language processing. The subject of the study is the attitude or the emotion behind certain texts. The purpose of sentiment analysis is to determine weather text content is neutral, positive or negative towards some topic. 
 
-Data used for this project is collected from Amazon, during the period of few years. Most of the data is collected between 2012 and 2014, as shown in figure 2. Each of the reviews has also ratings that are used for ground truth. The ratings are based on 5-star system, where 5 is highest and 1 is lowest rating. Distribution of the ratings is J-distribution with highest number of 5-star reviews, and it is shown in figure 1. After purchasing some of the products, customers are asked to give their review and rating, which are further subject to sentiment analysis in our project. 
+Data used for this project is collected from Amazon, during the period of few years. Most of the data is collected between 2012 and 2014, as shown in figure 2. Each of the reviews has also ratings that are used for ground truth. The ratings are based on 5-star system, where 5 is highest and 1 is lowest rating. Distribution of the ratings is J-distribution with highest number of 5-star reviews, and it is shown in figure 1. After purchasing some of the products, customers are asked to give their review and rating, which are further subject to sentiment analysis in our project. We first use Naive Bayes Classifier, training it with one part of the data, and testing it on the another part. We gained 84\% of correct classifications when classifying the reviews as positive or negative. After this we use bag of words and Latent Dirichlet Allocation (LDA) for extracting interesting features for the brands. 
 
 
 
@@ -72,7 +72,7 @@ Data used for this project is collected from Amazon, during the period of few ye
 
 
 \section{Related work}
-Natural language processing is an interesting and popular area of research, thus there are many papers regarding this topic. As Amazon is a widely used platform, it has gained much reviews in the past few years. We focused on the cell phone reviews, and we found papers and which gave different approaches and conclusions. GIVE REFERENCES AND EXAMPLES.. In this paper they took this approach, etc etc.
+Natural language processing is an interesting and popular area of research, thus there are many papers regarding this topic. As Amazon is a widely used platform, it has gained much reviews in the past few years. We focused on the cell phone reviews, and we found papers which gave different approaches and conclusions. Most of them are using techniques like bag of words and n-grams for sentiment analysis. There is also significant number of papers that are using machine learning techniques for this. We will give here few examples of papers which we find interesting and important. In paper "Sentiment Analysis in Amazon Reviews Using Probabilistic Machine Learning" by Callen Rain the approach is using Naive Bayes Classifier and bigrams for tagging the words for deciding about important features. Another relevant paper in this area of research is "Deep Learning for Amazon Food Review Sentiment Analysis" by Jiayu Wu and Tianshu Ji. They gave diffent approach to the similar problem by using Recurrent Neural Networks for sentiment analysis. 
 
 
 \section{Data Collection}
@@ -116,9 +116,9 @@ In order to understand better our dataset and specific models contained in it, w
 
 Another statistics which we found interesting was average number of cell phone models per brand, mean ratings per brand, models that have highest number of the reviews. 
 
-Customer's decision about purchasing specific model is often influenced by overall rating of the product - but in the project we show that we should be very careful when using this metric for making the decision. Not just the rating of specific model is important, but also the number of the reviews. We found during exploratory analysis that there are some models that have only a few reviews, but the rating is highest possible and there are models with average rating above four which have few thousand times more reviews. This should be taken into consideration very carefully before the decision.
+Customer's decision about purchasing specific model is often influenced by overall rating of the product - but in the project we show that we should be very careful when using this metric for making the decision. Not just the rating of specific model is important, but also the number of the reviews. We found during exploratory analysis that there are some models that have only a few reviews, but the rating is highest possible and there are models with average rating above four which have few thousand times more reviews. This should be taken into consideration very carefully before the decision. \par\par
 
-We found that there are no correlations between the price and the rating. Figure 5. shows correlations of words with the ratings - either high or low rating. We notice that some words have high correlation with the reviews - for example battery and phone. 
+We found that there are no correlations between the price and the rating. Figure 5. shows example of correlation of words with the ratings - either high or low rating for specific brand, in this case it is Sony Ericsson. We notice that some words have higher correlation with the reviews - for example battery and phone. 
 
 
 \begin{figure}[h!]
@@ -128,17 +128,18 @@ We found that there are no correlations between the price and the rating. Figure
   \label{fig:correlations}
 \end{figure}
 
-These was the basic analysis of the dataset. Further analysis is closely connected to the natural language processing and sentiment analysis, thus it will be explained into more details in the next section. 
+This was the basic analysis of the dataset. Further analysis is closely connected to the natural language processing and sentiment analysis, thus it will be explained into more details in the next section. 
 
 
 \section{Methods}
-We used two approaches for finding important features of cell phone brands. The first approach is to use supervised learning to classify new review as positive or negative, and after this we extract important words and do the sentiment analysis. Second approach ETC...
+We used two approaches for finding important features of cell phone brands. The first approach is to use supervised learning to classify new review as positive or negative. After this we extract important words and do the sentiment analysis for the review using bag of words approach and Latent Dirichlet Allocation.
 
 
 \subsection{Naive Bayes Classifier}
 
-The reviews are split into positive and negative based on the ratings, and they are separately analysed. We decided to consider ratings four and five positive reviews, one and two as negative reviews. Reviews rated with three were not taken into account as we considered them to be neutral. After marking the reviews as positive, negative or neutral, we used supervised learning to check if we will be able to train the model to predict if some new review is positive or negative. We used 90\% of the data for training and 10\% for the validation, and with Naive Bayes Classifier we got result of ~84\% of successful classification. Most important features for classifying the review as negative are words scam and false, whereas for classifying the review as positive important words are perfect and excellent. As the aim of our project is not to find only the important features, but to determine which of some specific features - like battery, ergonomy, screen, camera, etc - are correlated and important for some brands, we go further with the second step in the analysis. 
-TODO: mention tokenize, lemmatization, stemming, stop words, etc. 
+The reviews are split into positive and negative based on the ratings, and they are separately analysed. We decided to consider ratings four and five positive reviews, one and two as negative reviews. Reviews rated with three were not taken into account as we considered them to be neutral. After marking the reviews as positive, negative or neutral, we used supervised learning to check if we will be able to train the model to predict if some new review is positive or negative. The reviews are first tokenized and stopwords are removed. After this lemmatization is done in order to merge the different forms of the same word into one, by removing affixes. \par
+
+We used 90\% of the data for training and 10\% for the validation, and with Naive Bayes Classifier we got result of ~84\% of successful classification. Most important features for classifying the review as negative are words scam and false, whereas for classifying the review as positive important words are perfect and excellent. As the aim of our project is not to find only the important features, but to determine which of some specific features - like battery, ergonomy, screen, camera, etc - are correlated and important for some brands, we go further with the second step in the analysis. 
 
 
 \subsection{Further sentiment analysis} 
@@ -155,44 +156,50 @@ Here we take sligthly modified approach. We undertake the next steps:
 
 
 \section{Results and Findings}
-From the exploratory analysis we can make next conclusions: The most reviewed model is ..., the highest mean prices has Apple, followed by .. 
+From the exploratory analysis we can make next conclusions: The years when there were the higher number of reviews are 2013. and 2014. Overall the most reviewed models by the customers are Samsung Galaxy S3 Mini, Nokia N8, Motorola Moto G. Best rated cell phones are not always the best choise, as they sometimes have only few reviews. There are no correlations of the prices and ratings. Based on our dataset, the higher mean price of cell phones has Apple with average price of almost 450 euros. 
+ \par
 
+Regarding the sentiment analysis, for each brand there are usually more positive than negative reviews. As we explained in the previous part, using the bag of words and Latent Dirichlet Allocation and analysing the important feature words we obtained the results shown on the Figure 6.  TODO: ALEX INSERT THE NICE FIGURE HERE AND ADD FEW SENTENCES HERE TO CONCLUDE PLEASE :)
 
 \section{Conclusion}
-This platform uses reviews and extracts meaningful information from it, and then evaluates certain cell phone brand based on these reviews. We use sentiment analysis to classify each of the reviews and it's parts as good or bad. After this process, we find appeareances and sentiments for the feature words (for example battery, screen, camera, etc). Based on this, we describe and evaluate specific brands. 
+This platform uses reviews and extracts meaningful information from it, and then evaluates certain cell phone brand based on these reviews. We use sentiment analysis to classify each of the reviews and it's parts as good or bad. After this process, we find appeareances and sentiments for the feature words (for example battery, screen, camera, etc). For the review preprocessing are used next techniques: tokenization, removal of the stopwords, lemmatization. \par
+
+For classifying the reviews Naive Bayes Classifier is used, while for detecting the feature words we use bag of words and Latent Dirichlet Allocation. Based on this, we describe and evaluate specific brands and features which customers find important for certain cell phone brands.  
 
 
 \begin{thebibliography}{}
 
-\bibitem[\protect\citename{Aho and Ullman}1972]{Aho:72}
-Alfred~V. Aho and Jeffrey~D. Ullman.
-\newblock 1972.
-\newblock {\em The Theory of Parsing, Translation and Compiling}, volume~1.
-\newblock Prentice-{Hall}, Englewood Cliffs, NJ.
+\bibitem[\protect\citename{Callen Rain}]{Aho:72}
+Callen Rain
+\newblock {\em Sentiment Analysis in Amazon Reviews Using Probabilistic Machine Learning },
+\newblock Swarthmore College
 
-\bibitem[\protect\citename{{American Psychological Association}}1983]{APA:83}
-{American Psychological Association}.
-\newblock 1983.
-\newblock {\em Publications Manual}.
-\newblock American Psychological Association, Washington, DC.
 
-\bibitem[\protect\citename{{Association for Computing Machinery}}1983]{ACM:83}
-{Association for Computing Machinery}.
-\newblock 1983.
-\newblock {\em Computing Reviews}, 24(11):503--512.
+\bibitem[\protect\citename{Fang Zhan}]{Aho:72}
+Xing Fang and Justin Zhan
+\newblock 2015.
+\newblock { \em Sentiment analysis using product review data },
+\newblock Department of Computer Science, North Carolina A\&T State University, USA
 
-\bibitem[\protect\citename{Chandra \bgroup et al.\egroup }1981]{Chandra:81}
-Ashok~K. Chandra, Dexter~C. Kozen, and Larry~J. Stockmeyer.
-\newblock 1981.
-\newblock Alternation.
-\newblock {\em Journal of the Association for Computing Machinery},
-  28(1):114--133.
 
-\bibitem[\protect\citename{Gusfield}1997]{Gusfield:97}
-Dan Gusfield.
-\newblock 1997.
-\newblock {\em Algorithms on Strings, Trees and Sequences}.
-\newblock Cambridge University Press, Cambridge, UK.
+\bibitem[\protect\citename{Elli-Wang}]{Aho:72}
+Maria Soledad Elli, Yi-Fan Wang
+\newblock {\em Amazon Reviews, business analytics with sentiment analysis},
+\newblock Department of Computer Science, North Carolina A\&T State University, USA
+
+
+\bibitem[\protect\citename{Liu-Bing}]{Aho:72}
+Liu, Bing
+\newblock {\em Sentiment Analysis and Opinion Mining},
+\newblock Synthesis Lectures on Human Language Technologies
+
+
+\bibitem[\protect\citename{wallin}]{Aho:72}
+Alexander Wallin
+\newblock {\em Sentiment analysis of Amazon reviews and perception of product features}
+
+
+
 
 \end{thebibliography}
 
