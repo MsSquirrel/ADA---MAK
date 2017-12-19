@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.6)  19 DEC 2017 18:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.6)  19 DEC 2017 19:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -208,9 +208,6 @@ LaTeX Font Info:    Try loading font information for OT1+pcr on input line 45.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
-
 <ratingDistribution.png, id=1, 484.81125pt x 206.7725pt>
 File: ratingDistribution.png Graphic file (type png)
 
@@ -256,6 +253,8 @@ File: correlations.png Graphic file (type png)
 <use correlations.png>
 Package pdftex.def Info: correlations.png used on input line 126.
 (pdftex.def)             Requested size: 219.08612pt x 188.39519pt.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 138.
 
 Underfull \hbox (badness 6063) in paragraph at lines 152--153
 \OT1/ptm/m/n/10.95 vec-tors and La-tent Dirich-let Al-lo-ca-tion
@@ -279,7 +278,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  2871 strings out of 492995
  45761 string characters out of 6132704
- 109520 words of memory out of 5000000
+ 109523 words of memory out of 5000000
  6383 multiletter control sequences out of 15000+600000
  18512 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -290,7 +289,7 @@ xlive/2017/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/20
 17/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-d
 ist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/
 type1/urw/times/utmri8a.pfb>
-Output written on ada2017.pdf (4 pages, 156585 bytes).
+Output written on ada2017.pdf (4 pages, 155605 bytes).
 PDF statistics:
  43 PDF objects out of 1000 (max. 8388607)
  26 compressed objects within 1 object stream
