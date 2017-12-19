@@ -76,7 +76,11 @@ Natural language processing is interesting and popular area of research, thus th
 
 
 \section{Data Collection}
-We used dataset provided by Amazon for this project. Dataset consists of two json files - one containing the reviews, and another providing metadata about the products. Given below are the fields provided in the datasets:
+We used dataset provided by Amazon for this project. Dataset consists of two json files - one containing the reviews, and another providing metadata about the products. We merged these two files for our further data analysis.We also transformed the data in order to improve the speed of loading and processing this dataset in our python notebook. As this dataset was incomplete, we decided to enrich it with additional dataset from Kaggle platform. This is public GSMArena dataset and it contains more than 8000 phones specifications.
+
+
+\section{Dataset Description with Summary Statistics}
+After merging and combining all the datasets we had, we did some decriptive statistics. Given below is the information provided in the datasets:
 
 \begin{itemize}
   \item Reviewer's ID
@@ -92,11 +96,7 @@ We used dataset provided by Amazon for this project. Dataset consists of two jso
   \item Category of the product
 \end{itemize}
 
-We merged these two files for our further data analysis. Also we transformed the data in order to improve the speed of loading and processing this dataset in our python notebook. As this dataset was incomplete, we decided to enrich it with additional dataset from Kaggle platform. This is public dataset from GSMArena and it contains more than 8000 phones specifications.
-
-
-\section{Dataset Description with Summary Statistics}
-TODO: Explain step by step everything from the notebook. Add some more pictures. 
+We already had some expectations,so we first explored brands of cell phone producers that our dataset contains. As expected, most of the brands were known to us. We were interested in mean and median prices of these cell phones. Figure 3. gives overview of mean prices for 25 most popular brands.   
 
 \begin{figure}[h!]
   \centering
@@ -105,19 +105,61 @@ TODO: Explain step by step everything from the notebook. Add some more pictures.
   \label{fig:meanPricePerBrand}
 \end{figure}
 
+In order to understand better our dataset and specific models contained in it, we were interested in price distribution. It is shown in Figure 4. 
 
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=\linewidth]{priceDistribution.png}
+  \caption{Distribution of the prices}
+  \label{fig:priceDistribution}
+\end{figure}
+
+Another statistics which we found interesting was average number of cell phone models per brand, mean ratings per brand, models that have highest number of the reviews. 
+
+Customer's decision about purchasing specific model is often influenced by overall rating of the product - but in the project we show that we should be very careful when using this metric for making the decision. Not just the rating of specific model is important, but also the number of the reviews. We found during exploratory analysis that there are some models that have only a few reviews, but the rating is highest possible and there are models with average rating above four which have few thousand times more reviews. This should be taken into consideration very carefully before the decision.
+
+We found that there are no correlations between the price and the rating. Figure 5. shows correlations of words with the ratings - either high or low rating. We notice that some words have high correlation with the reviews - for example battery and phone. 
+
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=\linewidth]{correlations.png}
+  \caption{Correlations of the words with reviews}
+  \label{fig:correlations}
+\end{figure}
+
+These was the basic analysis of the dataset. Further analysis is closely connected to the natural language processing and sentiment analysis, thus it will be explained into more details in the next section. 
 
 
 \section{Methods}
-Methods with math and description of main algorithm
-Explain ft-idf, LDA, and our algorithm. 
+We used two approaches to finding important features of cell phone brands. First is using supervised learning to classify new review as positive or negative, and after this we extract important words and do the sentiment analysis. Second approach ETC...
+
+
+\subsection{Naive Bayes Classifier}
+
+The reviews are split into positive and negative based on the ratings, and they are separately analysed. We decided to consider ratings four and five positive reviews, one and two as negative reviews. Reviews rated with three were not taken into account as we considered them to be neutral. After marking the reviews as positive, negative or neutral we used supervised learning to check if we will be able to train the model to predict if some new review is positive or negative. We used 90\% of the data for training and 10\% for the validation and with Naive Bayes Classifier we got result of ~84\% of successful classification. Most important features for the classifying the review as negative are words scam and false, whereas for classifying the review as positive important words are perfect and excelent. As the aim of our project is not to find only the important features, but to determine which of some specific features - like battery, ergonomy, screen, camera, etc - are correlated and important for some brands, we go further with the second step in the analysis. 
+TODO: mention tokenize, lemmatization, stemming, stop words, etc. 
+
+
+\subsection{Further sentiment analysis} 
+
+Here we take sligthly modified approach. We undertake the next steps: 
+
+ \begin{itemize}
+  \item First we split the reviews according to the brand and according to the ratings - five groups are created for ratings from one to five.
+  \item Next we do topic modelling using words vectors and Latent Dirichlet Allocation (LDA). Reviews are seen as a bag of words, and topics as a distribution over a fixed vocabulary. Words are generated from document specific topic distributions. As the output of this step we have 10 topics with 10 most import words for each topic (for each brand).
+  \item After this we tag a sentiment on topic words. We use the previous Sentiment Analyzer to get a weighted sentiment for the topic. Here we consider two kind of words. First are feature words which we are mostly interested in - like battery or screen. Second group of words are non-feature words (great, bad, problem, work, etc). Non-feature words in the topic will be subject to sentiment analysis. 
+  \item The weighted scores of all the non-feature words will be given to all the feature words in the following topic. If a topic does not contain feature words, it is ignored.
+  \item At the end, we group the results to get an overview for all the reviews and all ratings. We count the density of appearence for each feature word in each topic. As a result and we show the sum of polarity scores for each feature word.
+\end{itemize}
+
 
 \section{Results and Findings}
-Elaborate the results about the interesting words into more details. 
+From the exploratory analysis we can make next conclusions: The most reviewed model is ..., the highest mean prices has Apple, followed by .. 
 
 
 \section{Conclusion}
-This platform uses reviews and extracts meaningful information from it, and then evaluates certain cell phone brand based on these reviews. We use sentiment analysis to classify each of the reviews (and it's parts) as good or bad. Based on this we describe and evaluate specific brands. 
+This platform uses reviews and extracts meaningful information from it, and then evaluates certain cell phone brand based on these reviews. We use sentiment analysis to classify each of the reviews and it's parts as good or bad. After this process we find appeareances and sentiment for the feature words (for example battery, screen, camera, etc). Based on this we describe and evaluate specific brands. 
 
 
 \begin{thebibliography}{}
